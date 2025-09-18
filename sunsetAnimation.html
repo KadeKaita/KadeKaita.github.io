@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        }
+        img{
+            width:100vw;
+            height:100vh;
+            position: absolute;
+            animation-name: sunset;
+            animation-duration: 15s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+        }
+        img:nth-child(2){
+            width:100vw;
+            height:100vh;
+            position: absolute;
+            object-fit: cover;
+            animation-name: sunrise;
+            animation-duration: 15s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+        @keyframes sunset{
+            0%{opacity: 1;}
+            50%{opacity: 0;}
+            100%{opacity: 1;}
+        }
+        @keyframes sunrise{
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.pinimg.com/564x/7f/9e/7f/7f9e7f66ff14a605f439ccf1964ef0fc.jpg" alt=" ">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpu70i1T7loclAdxIEZjinNZLSqMFJtL-yow&s" alt=" ">
+</body>
+</html>

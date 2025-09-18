@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Time</title>
+    <style>
+        body{
+            background-color: rgb(134, 146, 2);
+        }
+        .quiz{
+            font-size: 70px;
+            color: whitesmoke;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            animation-name: quiztime;
+            animation-duration: 2s;
+            position:relative;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            animation-direction: alternate;
+        }
+        @keyframes quiztime{
+            0%{
+                clip-path: inset(0% 0% 0% 0%);
+            }
+            100%{
+                clip-path: inset(100% 0% 100% 0%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz">Quiz Time!</div>
+</body>
+</html>
