@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+div{
+    font-family:Marker Felt, fantasy;
+}
+
+.Mouse{
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    width: 30%;
+    height: auto;
+    animation: MouseDrink 5s infinite alternate;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.text{
+    position: absolute;
+    top: 12%;
+    left: 13%;
+    font-size: 65px;
+    color:#6a3d15;
+    animation: TextEntrance 21 ease-in-out forwards;
+    font-family:Marker Felt, fantasy;
+    overflow: hidden;
+} 
+
+@keyframes MouseDrink {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}

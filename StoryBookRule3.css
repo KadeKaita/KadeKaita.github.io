@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow:hidden;
+}
+
+div {
+  font-family: Marker Felt, fantasy;
+}
+
+@keyframes slidein {
+  0% {
+    left: -100vw;
+    top: 100vh;
+  }
+  100% {
+    left: 25vw;
+    top: 8vh;
+  }
+}
+
+@keyframes TextEntrance {
+  0% {
+    top: 10vh;
+    transform: rotate(-43deg);
+    opacity: 0;
+  }
+  100% {
+    top: 61vh;
+    left: 32vw;
+    transform: rotate(-43deg);
+    opacity: 1;
+  }
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.boy {
+  width: 47vw;   /* 800px ≈ 41.7vw */
+  height: 60vh;   /* 600px ≈ 55.6vh */
+  position: absolute;
+  top: 8vh;
+  left: 25vw;
+  animation: slidein 3s ease-out;
+}
+
+.text {
+  position: absolute;
+  transform: rotate(-43deg);
+  top: 59vh;
+  left: 30vw;
+  font-size: 6vh; /* 4rem ≈ 3.7vh */
+  color: #935925;
+  animation: TextEntrance 3s ease-in-out forwards;
+  font-family: Marker Felt, fantasy;
+  overflow: hidden;
+}

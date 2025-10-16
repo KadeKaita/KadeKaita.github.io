@@ -1,0 +1,55 @@
+@keyframes TextEntrance {
+  0% {
+    opacity:0;
+    transform: translateY(-8vh);
+  }
+  100% {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+.text {
+  position: absolute;
+  top: 5vh;
+  left: 20vw;
+  font-size: 6.3vh; /* 65px ≈ 6vh */
+  color: #6a3d15;
+  animation: TextEntrance 3s ease-in-out forwards;
+  font-family: Marker Felt, fantasy;
+  overflow: hidden;
+}
+@keyframes MouseEntrance {
+    0% {opacity:0;
+        transform: translatey(-10vh);}
+    100% {opacity:1;
+        transform: translatey(0);}
+}
+.Mouse{
+    position: absolute;
+    top: 45vh;
+    left: 56vw;
+    width: 14vw;
+    height: auto;
+    animation: MouseEntrance 4s ease-in-out forwards;
+}
+.Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+div{
+    font-family:Marker Felt, fantasy;
+}

@@ -1,0 +1,56 @@
+.Mouse{
+    position: absolute;
+    top: 45vh;
+    left: 45vw;
+    width: 40vw;
+    height: auto;
+    animation: MouseEntrance 4s ease-in-out forwards;
+}
+@keyframes TextEntrance {
+  0% {
+    opacity:0;
+    transform: translateY(-8vh);
+  }
+  100% {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+.text {
+  position: absolute;
+  top: 5vh;
+  left: 23vw;
+  font-size: 6.3vh; /* 65px ≈ 6vh */
+  color: #935925;
+  animation: TextEntrance 4s ease-in-out forwards;
+  font-family: Marker Felt, fantasy;
+  overflow: hidden;
+}
+
+.Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    background-color: #c28e61;
+}
+div{
+    font-family:Marker Felt, fantasy;
+}
+@keyframes MouseEntrance {
+    0% {opacity:0;
+        transform: translatex(-20vh);}
+    100% {opacity:1;
+        transform: translatex(0);}
+}

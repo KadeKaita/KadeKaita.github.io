@@ -1,0 +1,56 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+div{
+    font-family:Marker Felt, fantasy;
+}
+
+.Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.Boy {
+  position: absolute;
+  top: 12vh;
+  left: 22vw;
+  width: 40vw;
+  height: auto;
+  animation: BoyEntrance 3s ease-in-out forwards;
+}
+@keyframes MouseEntrance{
+    0% {transform: translateY(-5vh);
+        opacity: 0;}
+    100% {transform: translateY(0);
+        opacity: 1;}
+}
+.Mouse{
+    position: absolute;
+    top: 67%;
+    left: 45%;
+    width: 13%;
+    height: auto;
+    animation: MouseEntrance 3s ease-in-out forwards;
+    
+}
+
+.text {
+  position: absolute;
+  top: 5vh;
+  left: 10vw;
+  font-size: 8vh; /* 65px ≈ 6vh */
+  color: #6a3d15;
+  animation: TextEntrance 3s ease-in-out forwards;
+  font-family: Marker Felt, fantasy;
+  overflow: hidden;
+}

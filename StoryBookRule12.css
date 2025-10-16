@@ -1,0 +1,78 @@
+@keyframes TextEntrance {
+  0% {
+    opacity:0;
+    transform: translateY(-8vh);
+  }
+  100% {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+.text {
+  position: absolute;
+  top: 5vh;
+  left: 16vw;
+  font-size: 6.3vh; /* 65px ≈ 6vh */
+  color:#935925;
+  animation: TextEntrance 3s ease-in-out forwards;
+  font-family: Marker Felt, fantasy;
+  overflow: hidden;
+}
+@keyframes BoyEntrance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-17vh);
+    }
+}
+.Boy{
+    position: absolute;
+    top: 20vh;
+    left: 50vw;
+    width: 30vw;
+    height: auto;
+    animation: BoyEntrance 4s ease-in-out forwards;
+}
+
+@keyframes Boy2Entrance {
+    0% {
+        opacity: 1;
+        
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-17vh);
+    }
+}
+.Boy2{
+    position: absolute;
+    top: 20vh;
+    left: 50vw;
+    width: 30vw;
+    height: auto;
+    animation: Boy2Entrance 4s ease-in-out forwards;
+}
+.Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    background-color: #c28e61;
+}
+div{
+    font-family:Marker Felt, fantasy;
+}

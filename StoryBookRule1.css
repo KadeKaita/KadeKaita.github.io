@@ -1,0 +1,157 @@
+div {
+  font-size: 15px;
+  color: rgb(237, 45, 45);
+  font-family: Marker Felt, fantasy;
+  position: absolute;
+}
+body{
+  overflow:hidden;
+}
+/* this is how the position of the mouse changes using animation */
+@keyframes mouseEntrance {
+  0% {
+    bottom: -33vh; /* Start off-screen */
+    right: -17.36vw;
+    transform: rotate(-15deg) scale(1) translate(0, 0);
+  }
+  40% {
+    bottom: 2.2vh; /* Move to visible spot */
+    right: 1.39vw;
+    transform: rotate(-15deg) scale(1) translate(0, 0);
+  }
+  100% {
+    bottom: 2.2vh;
+    right: 1.39vw;
+    transform: rotate(-15deg) scale(1) translate(0, -22vh);
+  }
+}
+
+@keyframes mouseShake {
+  0% { transform: rotate(-15deg) translate(0, 0); }
+  25% { transform: rotate(-13deg) translate(0.35vw, -0.35vh); }
+  50% { transform: rotate(-17deg) translate(-0.35vw, 0.35vh); }
+  75% { transform: rotate(-13deg) translate(0.35vw, -0.35vh); }
+  100% { transform: rotate(-15deg) translate(-0.69vw, -1.39vh); }
+}
+
+#mouseImg {
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  bottom: 5vh;
+  animation:
+    mouseEntrance 1.5s ease-out forwards,
+    mouseShake 0.6s 1.5s infinite alternate;
+  overflow: hidden;
+}
+
+.rotateHigh {
+  transform: rotate(-15deg);
+  position: absolute;
+  top: 10vh;
+  left: 7vw;
+  font-size: 90px;
+  color: red;
+  overflow: hidden;
+}
+
+.rotateMed {
+  transform: rotate(-15deg);
+  position: absolute;
+  top: 22vh;
+  left: 14vw;
+  font-size: 90px;
+  color: red;
+  overflow: hidden;
+}
+
+.rotateLow {
+  transform: rotate(-15deg);
+  position: absolute;
+  top: 37vh;
+  left: 15vw;
+  font-size: 90px;
+  color: red;
+}
+
+.author {
+  transform: rotate(-15deg);
+  position: absolute;
+  top: 65vh;
+  left: 1.39vw;
+  font-size: 50px;
+  color: black;
+}
+
+.illustration {
+  position: absolute;
+  top: 76vh;
+  left: 1.53vw;
+  font-size: 30px;
+  color: black;
+  transform: rotate(-15deg);
+}
+
+.illustrator {
+  transform: rotate(-15deg);
+  position: absolute;
+  top: 80vh;
+  left: 1.53vw;
+  font-size: 50px;
+  color: black;
+}
+
+#square {
+  clip-path: polygon(0 0, 85vw 0, 97vw 47vh, 0 59vh);
+  height: 100vh;
+  width: 80vh;
+  background-color: white;
+  z-index: -1;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(76, 166, 71);
+}
+
+.cookie1 {
+  top: 25vh;
+  left: -3vw;
+  width: 230px;
+  height: 230px;
+  position: absolute;
+  transform: rotate(-15deg);
+  animation:
+    mouseShake 0.6s 1.5s infinite alternate;
+}
+
+.cookie2 {
+  top: -15vh;
+  left: 40vw;
+  width: 240px;
+  height: 240px;
+  position: absolute;
+  transform: rotate(-15deg);
+  animation:
+    mouseShake 0.6s 1.5s infinite alternate;
+}
+
+.Mouse {
+  top: 46vh;
+  left: 45vw;
+  position: absolute;
+  width: 600px;
+  height: 600px;
+}
+
+#InvisCircle {
+  width: 200px;
+  height: 200px;
+  background-color: lightcoral;
+  shape-outside: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  float: left;
+  margin-right: 20px;
+  opacity: 1;
+}

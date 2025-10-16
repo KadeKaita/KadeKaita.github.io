@@ -1,0 +1,33 @@
+.text {
+  position: absolute;
+  top: 30vh;
+  left: 40vw;
+  font-size: 15vh; /* 65px ≈ 6vh */
+  color: #935925;
+  animation: TextEntrance 2s infinite alternate;
+  font-family: Marker Felt, fantasy;
+  overflow: hidden;
+}
+
+@keyframes TextEntrance {
+  0% {
+    opacity:1;
+    transform: translateY(-10vh);
+    transform: rotate(-8deg);
+
+  }
+  100% {
+    opacity:1;
+    transform: translateY(10vh);
+    transform: rotate(8deg);
+  }
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    background-color: #c28e61;
+}
+div{
+    font-family:Marker Felt, fantasy;
+}

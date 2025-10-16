@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow:hidden;
+}
+
+div {
+  font-family: Marker Felt, fantasy;
+}
+
+.Boy {
+  position: absolute;
+  top: 20vh;
+  left: -2vw;
+  width: 48vw;
+  height: auto;
+  animation: BoyEntrance 4s ease-in-out forwards;
+}
+
+.Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.text {
+  position: absolute;
+  top: 15vh;
+  left: 13vw;
+  font-size: 8vh; /* 65px ≈ 6vh */
+  color: #6a3d15;
+  animation: TextEntrance 2s ease-in-out forwards;
+  font-family: Marker Felt, fantasy;
+  overflow: hidden;
+}
+
+@keyframes TextEntrance {
+  0% {
+    transform: translateY(-175vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes BoyEntrance {
+  0% {
+    opacity: 0;
+    transform: translateX(-30vw);
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(10vw);
+  }
+  60% {
+    opacity: 1;
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(5deg) translateX(9vw);
+  }
+}
