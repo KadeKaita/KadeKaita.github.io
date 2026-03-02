@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Hotel Management</title>
+    <script src="hotel.js"></script>
+
+    <style>
+        /* Define global variables for colors used throughout the site */
+        :root {
+            --jp-red: #bc002d;          /* Imperial Red */
+            --jp-indigo: #1a2a6c;       /* Deep Indigo */
+            --jp-blue: #70a1ff;         /* Sky Blue */
+            --jp-paper: #f9f7f2;        /* Washi Paper Off-white */
+            --jp-black: #2d3436;        /* Ink Black */
+            --white: #ffffff;           /* Pure White */
+        }
+
+        /* Styles for the overall page layout */
+        body {
+            /* Sets the font style for the whole page */
+            font-family: 'Optima', 'Candara', 'Noto Sans JP', sans-serif;
+            /* Fallback color if the background image fails to load */
+            background-color: #e0e0e0;
+            /* Removes default browser margins */
+            margin: 0;
+            /* Adds internal spacing around the page edges */
+            padding: 20px;
+            /* Enables Flexbox layout for the body */
+            display: flex;
+            /* Forces the logo and the grid to stack vertically (Logo on top, Grid below) */
+            flex-direction: column;
+            /* Centers all items (Logo and Grid) horizontally */
+            align-items: center; 
+        }
+
+        /* Styles for the large background image */
+        .background {
+            /* Fixes the image so it doesn't scroll with the content */
+            position: fixed;
+            /* Anchors to the top-left corner */
+            top: 0;
+            left: 0;
+            /* Sets size to cover 100% of the viewport width/height */
+            width: 100vw;
+            height: 100vh;
+            /* Ensures the image fills the space without stretching */
+            object-fit: cover;
+            /* Places the image behind everything else */
+            z-index: -2; 
+        }
+
+        /* Styles for your logo image */
+        .logo {
+            /* Makes the image act like a block to respect margins */
+            display: block;
+            /* Limits the height so it doesn't overpower the page */
+            height: 38rem;
+            /* Keeps the image proportions correct */
+            width: auto;
+            /* Centers the logo and adds a 40px gap between it and the rooms */
+            margin: 0 0 4px 0;
+            /* Ensures it stays on top of the background */
+            position: relative;
+            z-index: 10000;
+        }
+
+        /* Styles for the grid containing the hotel rooms */
+        .main {
+            /* Enables Grid layout */
+            display: grid;
+            /* Creates columns that automatically fit; minimum 300px wide each */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Sets the gap between the room boxes */
+            gap: 40px;
+            /* Limits the total width of the grid for large screens */
+            max-width: 1200px;
+            /* Allows the grid to take up full available width */
+            width: 100%;
+            /* Relative positioning for layering */
+            position: relative;
+        }
+
+        /* Styles for the individual room boxes */
+        .hotel-container {
+            /* Uses the off-white paper color variable */
+            background: var(--jp-paper);
+            /* Internal spacing inside the box */
+            padding: 30px;
+            /* Slightly rounds the corners */
+            border-radius: 4px;
+            /* Adds the thick indigo line at the top */
+            border-top: 5px solid var(--jp-indigo);
+            /* Adds a solid, offset shadow for a "sticker" look */
+            box-shadow: 10px 10px 0px rgba(26, 42, 108, 0.1);
+            /* Required for the absolute positioning of the red circle inside */
+            position: relative;
+            /* Hides anything that pokes outside the box */
+            overflow: hidden;
+            /* Smoothly animates the hover effects */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Effects when you move your mouse over a room box */
+        .hotel-container:hover {
+            /* Moves the box 10 pixels up */
+            transform: translateY(-10px);
+            /* Makes the shadow larger and more intense */
+            box-shadow: 15px 20px 0px rgba(18, 147, 179, 0.15);
+            /* Changes the top border color to red on hover */
+            border-top-color: var(--jp-red);
+        }
+
+        /* The decorative faint red circle in the top right of each room box */
+        .hotel-container::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: var(--jp-red);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        /* Room titles styling */
+        h2 {
+            font-family: serif;
+            text-transform: uppercase;
+            /* Adds spacing between letters */
+            letter-spacing: 4px;
+            color: var(--jp-black);
+            /* Adds the thin blue line under the room name */
+            border-bottom: 1px solid var(--jp-indigo);
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+
+        /* Status message text ("Room is empty", etc.) */
+        p[id^="status-mes100e"] {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--jp-indigo);
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        /* Input fields styling */
+        input {
+            background: transparent;
+            border: none;
+            /* Creates the minimalist bottom-line-only look */
+            border-bottom: 2px solid #ccc;
+            padding: 10px 5px;
+            margin: 10px 0;
+            width: 100%;
+            /* Includes padding in the total width calculation */
+            box-sizing: border-box;
+            /* Smooth color change when clicking the input */
+            transition: border-color 0.3s;
+        }
+
+        /* Change input line color when typing */
+        input:focus {
+            outline: none;
+            border-bottom-color: var(--jp-red);
+        }
+
+        /* General button styling */
+        button {
+            font-family: inherit;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px;
+            margin: 8px 0;
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid var(--jp-indigo);
+            background: transparent;
+            color: var(--jp-indigo);
+            /* Smoothly handles color/background changes */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* "Add Guest" button specific style */
+        button[id^="buttonadd"] {
+            background: var(--jp-indigo);
+            color: white;
+        }
+
+        /* Inverse colors on "Add Guest" hover */
+        button[id^="buttonadd"]:hover {
+            background: var(--white);
+            color: var(--jp-indigo);
+        }
+
+        /* Color classes for specific button types */
+        .remove { border-color: var(--jp-red); color: var(--jp-red); }
+        .remove:hover { background: var(--jp-red); color: white; }
+
+        .lock { border-color: var(--jp-black); color: var(--jp-black); }
+        .lock:hover { background: var(--jp-black); color: white; }
+
+        .unlock { border-color: var(--jp-blue); color: var(--jp-blue); }
+        .unlock:hover { background: var(--jp-blue); color: white; }
+
+        .clear { border-color: var(--jp-red); color: var(--jp-red); }
+        .clear:hover { background: var(--jp-red); color: white; }
+
+        /* The list where names appear */
+        ul { padding: 0; list-style: none; margin: 20px 0; }
+        /* Style for each name entry */
+        ul li {
+            padding: 10px;
+            /* Adds the small red vertical line to the left of names */
+            border-left: 2px solid var(--jp-red);
+            background: rgba(255, 255, 255, 0.5);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="cherryBlossom.jpg" alt="" class="background">
+
+    <img src="Adobe Express - file.png" alt="Hotel Logo" class="logo">
+
+    <div class="main">
+        
+        <div class="hotel-container">
+            <h2>Room 1</h2>
+            <p id="status-message1"></p> <input id="GuestName1" placeholder="Guest name"> <button id="buttonadd1" onclick="AddGuest(1)">Add Guest</button> <ul id="guestList1"></ul> <input id="Removename1" placeholder="Remove name"> <button class="remove" onclick="RemoveGuest(1)">Remove Guest</button>
+            <button class="lock" onclick="LockRoom(1)">Lock</button>
+            <button class="unlock" onclick="UnlockRoom(1)">Unlock</button>
+            <button class="clear" onclick="RemoveAllGuests(1)">Clear Room</button>
+        </div>
+
+        <div class="hotel-container">
+            <h2>Room 2</h2>
+            <p id="status-message2"></p>
+            <input id="GuestName2" placeholder="Guest name">
+            <button id="buttonadd2" onclick="AddGuest(2)">Add Guest</button>
+            <ul id="guestList2"></ul>
+            <input id="Removename2" placeholder="Remove name">
+            <button class="remove" onclick="RemoveGuest(2)">Remove Guest</button>
+            <button class="lock" onclick="LockRoom(2)">Lock</button>
+            <button class="unlock" onclick="UnlockRoom(2)">Unlock</button>
+            <button class="clear" onclick="RemoveAllGuests(2)">Clear Room</button>
+        </div>
+
+        <div class="hotel-container">
+            <h2>Room 3</h2>
+            <p id="status-message3"></p>
+            <input id="GuestName3" placeholder="Guest name">
+            <button id="buttonadd3" onclick="AddGuest(3)">Add Guest</button>
+            <ul id="guestList3"></ul>
+            <input id="Removename3" placeholder="Remove name">
+            <button class="remove" onclick="RemoveGuest(3)">Remove Guest</button>
+            <button class="lock" onclick="LockRoom(3)">Lock</button>
+            <button class="unlock" onclick="UnlockRoom(3)">Unlock</button>
+            <button class="clear" onclick="RemoveAllGuests(3)">Clear Room</button>
+        </div>
+
+        <div class="hotel-container">
+            <h2>Room 4</h2>
+            <p id="status-message4"></p>
+            <input id="GuestName4" placeholder="Guest name">
+            <button id="buttonadd4" onclick="AddGuest(4)">Add Guest</button>
+            <ul id="guestList4"></ul>
+            <input id="Removename4" placeholder="Remove name">
+            <button class="remove" onclick="RemoveGuest(4)">Remove Guest</button>
+            <button class="lock" onclick="LockRoom(4)">Lock</button>
+            <button class="unlock" onclick="UnlockRoom(4)">Unlock</button>
+            <button class="clear" onclick="RemoveAllGuests(4)">Clear Room</button>
+        </div>
+
+        <div class="hotel-container">
+            <h2>Room 5</h2>
+            <p id="status-message5"></p>
+            <input id="GuestName5" placeholder="Guest name">
+            <button id="buttonadd5" onclick="AddGuest(5)">Add Guest</button>
+            <ul id="guestList5"></ul>
+            <input id="Removename5" placeholder="Remove name">
+            <button class="remove" onclick="RemoveGuest(5)">Remove Guest</button>
+            <button class="lock" onclick="LockRoom(5)">Lock</button>
+            <button class="unlock" onclick="UnlockRoom(5)">Unlock</button>
+            <button class="clear" onclick="RemoveAllGuests(5)">Clear Room</button>
+        </div>
+
+        <div class="hotel-container">
+            <h2>Room 6</h2>
+            <p id="status-message6"></p>
+            <input id="GuestName6" placeholder="Guest name">
+            <button id="buttonadd6" onclick="AddGuest(6)">Add Guest</button>
+            <ul id="guestList6"></ul>
+            <input id="Removename6" placeholder="Remove name">
+            <button class="remove" onclick="RemoveGuest(6)">Remove Guest</button>
+            <button class="lock" onclick="LockRoom(6)">Lock</button>
+            <button class="unlock" onclick="UnlockRoom(6)">Unlock</button>
+            <button class="clear" onclick="RemoveAllGuests(6)">Clear Room</button>
+        </div>
+
+        <div class="hotel-container" style="grid-column: 1 / -1; margin-top: 50px;">
+            <h1>MASTER HISTORY LOG</h1>
+            <ul id="masterHistoryList"></ul>
+            <button class="clear" onclick="ClearHistory()">Reset History Log</button>
+        </div>
+    </div>
+
+    <script>
+        function createPetal() {
+            // Find the container for petals
+            const container = document.getElementById('sakura-visuals');
+            // Create a new div element
+            const petal = document.createElement('div');
+            // Assign the 'petal' class for styling
+            petal.classList.add('petal');
+            
+            // Randomize horizontal starting position (0 to 100% of width)
+            petal.style.left = Math.random() * 100 + 'vw';
+            // Randomize size (between 10px and 20px)
+            petal.style.width = Math.random() * 10 + 10 + 'px';
+            petal.style.height = petal.style.width;
+            // Randomize speed of fall (4 to 7 seconds)
+            petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+            
+            // Add the petal to the container
+            container.appendChild(petal);
+            
+            // Remove the petal from the page after 7 seconds to prevent lag
+            setTimeout(() => {
+                petal.remove();
+            }, 7000);
+        }
+        // Run the createPetal function every 300 milliseconds
+        setInterval(createPetal, 300);
+    </script>
+
+</body>
+</html>
