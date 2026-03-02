@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let Time = setInterval(10)
+        var score = 0
+
+        if (Time === 10){
+            score += 1
+        }
+    </script>
+</head>
+<body>
+    <h1 id = "placeholder"></h1>
+    <script>
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                clear.Timeout()
+                let showTime = localStorage.getItem("Time")
+                document.getElementById('placeholder').innerHTML = showTime
+            }
+        });
+    </script>
+</body>
+</html>
